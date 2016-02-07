@@ -1,4 +1,4 @@
-var BeanInvoker = require('simple-msg-rpc').BeanInvoker;
+var BeanInvoker = require('mcon-common-rpc').BeanInvoker;
 var clients = require('./clients');
 
 var localClient = new clients.Client();

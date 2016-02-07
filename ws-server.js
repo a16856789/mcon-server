@@ -1,5 +1,5 @@
 var WebSocketServer = require('ws').Server;
-var SimpleMsgRpc = require('simple-msg-rpc');
+var SimpleMsgRpc = require('mcon-common-rpc');
 var clients = require('./clients'), Client = clients.Client;
 var services = require('./services');
 var logger = require('./logger').getLogger('ws-server');
