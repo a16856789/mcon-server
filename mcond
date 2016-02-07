@@ -1,0 +1,81 @@
+#!/usr/bin/env node
+
+function run() {
+    require('../local-services');
+    require('../local-server').init();
+    require('../ws-server').init();
+    require('../http-server').init();
+}
+
+function findMcondPid(callback) {
+    var ps = require('ps-node');
+    ps.lookup({
+        psargs: 'aux',
+        command: 'node'
+    }, function(err, list) {
+        if (list) {
+            var found = false;
+            list.forEach(function(p) {
+                if (!p.arguments || p.pid == process.pid) return;
+                var a = p.arguments.join(' ');
+                if (a.indexOf('mcond') >= 0) {
+                    var pid = p.pid;
+                    callback(pid);
+                    found = true;
+                }
+            });
+            if (!found) {
+                callback(null);
+            }
+        }
+    });
+}
+
+var script = process.argv[1];
+var cmd = process.argv[2];
+
+if (cmd == 'status') {
+    findMcondPid(function(pid) {
+        if (pid) {
+            console.log('mcond is running, pid is ' + pid + ' ...');
+        } else {
+            console.log('can not find mcond process');
+        }
+    });
+    return;
+}
+
+if (cmd == 'start') {
+    console.log('starting server ...');
+    var daemon = require('daemon');
+    var pid = daemon.daemon(script, ['run']).pid;
+    console.log("mcond's pid is " + pid);
+    return;
+}
+
+if (cmd == 'stop') {
+    findMcondPid(function(pid) {
+        var ps = require('ps-node');
+        if (pid) {
+            console.log('stopping server, pid is ' + pid + ' ...');
+            ps.kill(pid, function(err, res) {
+                if (err) {
+                    throw err;
+                } else {
+                    console.log('Process %s has been killed!', pid);
+                }
+            });
+        } else {
+            console.log('can not find mcond process');
+        }
+    });
+    return;
+}
+
+if (cmd == 'run') {
+    run();
+    return;
+}
+
+console.log('unknow cmd :' + cmd);
+console.log('   cmds: status start stop run')

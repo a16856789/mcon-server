@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mcon Server Monitor</title>
+    <link rel="stylesheet" href="mcon.css" type="text/css" >
+</head>
+<body>
+    <h2>Statistics</h1>
+    <table id="stats">
+        <thead>
+            <tr><th>key</th><th>value</th></tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h2>Clients</h1>
+    <table id="clients">
+        <thead>
+            <tr><th>clientId</th><th>name</th><th>version</th><th>connType</th><th>serviceIds</th></tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h2>Services</h1>
+    <table id="services">
+        <thead>
+            <tr><th>serviceId</th><th>clientIds</th></tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script src="//lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+    <script src="mcon.js"></script>
+</body>
+</html>
