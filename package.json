@@ -1,6 +1,6 @@
 {
   "name": "mcon-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "mcon server",
   "main": "mcon.js",
   "dependencies": {
@@ -9,7 +9,7 @@
     "express": "^4.13.4",
     "log4js": "^0.6.31",
     "ps-node": "0.0.5",
-    "mcon-common-rpc": "^0.0.1",
+    "mcon-common-rpc": "^0.0.2",
     "ws": "^1.0.1"
   },
   "scripts": {
