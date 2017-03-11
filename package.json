@@ -9,7 +9,7 @@
     "express": "^4.13.4",
     "log4js": "^0.6.31",
     "ps-node": "0.0.5",
-    "mcon-common-rpc": "^0.0.2",
+    "mcon-common-rpc": "file:../mcon-common-rpc",
     "ws": "^1.0.1"
   },
   "scripts": {
