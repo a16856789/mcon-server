@@ -40,7 +40,7 @@ httpServer.init = function() {
     });
 
     var port = this.port;
-    app.listen(port, function() {
+    app.listen(port, 'localhost', function() {
         logger.info('Http Server is Listening at port %d.', port);
     });
 };
